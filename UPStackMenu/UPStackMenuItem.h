@@ -8,15 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-
 typedef enum {
     UPStackMenuItemLabelPosition_left = 0,
     UPStackMenuItemLabelPosition_right
 } UPStackMenuItemLabelPosition_e;
 
-
 @protocol UPStackMenuItemDelegate;
-
 
 @interface UPStackMenuItem : UIView
 
@@ -27,10 +24,9 @@ typedef enum {
 
 @property (nonatomic, unsafe_unretained) id<UPStackMenuItemDelegate>     delegate;
 
-
-- (id)initWithImage:(UIImage*)image;
-- (id)initWithImage:(UIImage*)image highlightedImage:(UIImage*)highlightedImage title:(NSString*)title;
-- (id)initWithImage:(UIImage*)image highlightedImage:(UIImage*)highlightedImage title:(NSString*)title font:(UIFont*)font;
+- (instancetype)initWithImage:(UIImage *)image;
+- (instancetype)initWithImage:(UIImage *)image highlightedImage:(UIImage *)highlightedImage title:(NSString *)title;
+- (instancetype)initWithImage:(UIImage *)image highlightedImage:(UIImage *)highlightedImage title:(NSString *)title font:(UIFont *)font;
 
 - (void)expandAnimated:(BOOL)animated withDuration:(NSTimeInterval)duration;
 - (void)reduceAnimated:(BOOL)animated withDuration:(NSTimeInterval)duration;
@@ -42,11 +38,10 @@ typedef enum {
 
 @end
 
-
-
 @protocol UPStackMenuItemDelegate <NSObject>
 
 @optional
+
 - (void)didTouchStackMenuItem:(UPStackMenuItem*)item;
 
 @end

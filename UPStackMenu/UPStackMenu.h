@@ -10,7 +10,6 @@
 
 #import "UPStackMenuItem.h"
 
-
 typedef enum {
     UPStackMenuStackPosition_up = 0,
     UPStackMenuStackPosition_down
@@ -22,9 +21,7 @@ typedef enum {
     UPStackMenuAnimationType_progressiveInverse
 } UPStackMenuAnimationType_e;
 
-
 @protocol UPStackMenuDelegate;
-
 
 @interface UPStackMenu : UIView <UPStackMenuItemDelegate>
 
@@ -45,31 +42,34 @@ typedef enum {
 @property (nonatomic, readonly)             BOOL                        isOpen;
 @property (nonatomic, unsafe_unretained)    id<UPStackMenuDelegate>     delegate;
 
+- (instancetype)initWithContentView:(UIView *)contentView;
 
-- (id)initWithContentView:(UIView*)contentView;
+- (void)setOpenImage:(UIImage *)image;
+- (void)setCloseImage:(UIImage *)image;
+- (void)setOpenAngle:(CGFloat)angle;
 
-- (void)addItem:(UPStackMenuItem*)item;
-- (void)addItems:(NSArray*)items;
-- (void)removeItem:(UPStackMenuItem*)item;
+- (void)addItem:(UPStackMenuItem *)item;
+- (void)addItems:(NSArray *)items;
+- (void)removeItem:(UPStackMenuItem *)item;
 - (void)removeItemAtIndex:(NSUInteger)index;
 - (void)removeAllItems;
 
-- (NSArray*)items;
+- (NSArray *)items;
 
 - (void)openStack;
 - (void)closeStack;
 
 @end
 
-
-
 @protocol UPStackMenuDelegate <NSObject>
 
 @optional
-- (void)stackMenuWillOpen:(UPStackMenu*)menu;
-- (void)stackMenuDidOpen:(UPStackMenu*)menu;
-- (void)stackMenuWillClose:(UPStackMenu*)menu;
-- (void)stackMenuDidClose:(UPStackMenu*)menu;
-- (void)stackMenu:(UPStackMenu*)menu didTouchItem:(UPStackMenuItem*)item atIndex:(NSUInteger)index;
+
+- (BOOL)statckMenuShouldOpen:(UPStackMenu *)menu;
+- (void)stackMenuWillOpen:(UPStackMenu *)menu;
+- (void)stackMenuDidOpen:(UPStackMenu *)menu;
+- (void)stackMenuWillClose:(UPStackMenu *)menu;
+- (void)stackMenuDidClose:(UPStackMenu *)menu;
+- (void)stackMenu:(UPStackMenu *)menu didTouchItem:(UPStackMenuItem *)item atIndex:(NSUInteger)index;
 
 @end
